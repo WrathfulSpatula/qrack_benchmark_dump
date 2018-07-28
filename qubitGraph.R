@@ -12,7 +12,7 @@ options(scipen=4, digits=3)
 eqTable <- data.frame(MinQubit=integer(), Base=numeric(), Intercept=numeric(), RSqr=numeric(), BaseP=numeric(), InterceptP=numeric(), ModelP=numeric())
 
 # Load data
-testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/grovers_2.csv", header=TRUE, sep=",")
+testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/grovers_p3.csv", header=TRUE, sep=",")
 names(testData) <- c("Count", "AvgT",	"SDT", "Q0", "Q1", "Q2", "Q3", "Q4", "Type")
 firstTrendPoint <- 1
 lastTrendPoint <- 22
@@ -62,7 +62,7 @@ ggplot(testData, aes(x=factor(Count), y=AvgT, colour = factor(Type))) +
   scale_colour_discrete(name = "Engine Type") +
   geom_boxplot(outlier.size=0, fill = "white", position="identity", alpha=.5)  +
   stat_summary(fun.y=median, geom="line", aes(group=factor(Type)), size=1) + scale_y_log10() +
-  ggtitle ("N-Qubit Grover Search") +
+  ggtitle ("N-Qubit Grover's Search (N Qubits in Engine)") +
   xlab("N (No. of Qubits)") +
   ylab("Average Time (ms)")
 
