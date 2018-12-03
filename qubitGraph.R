@@ -1,3 +1,22 @@
+# To just get the graphs in the performance document, just run this top section, changing the input file name and labels
+options(scipen=4, digits=3)
+eqTable <- data.frame(MinQubit=integer(), Base=numeric(), Intercept=numeric(), RSqr=numeric(), BaseP=numeric(), InterceptP=numeric(), ModelP=numeric())
+
+# The input file name goes here
+testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/cnot_all.csv", header=TRUE, sep=",")
+names(testData) <- c("Count", "AvgT",	"SDT", "Q0", "Q1", "Q2", "Q3", "Q4", "Type")
+
+require(ggplot2)
+ggplot(testData, aes(x=factor(Count), y=AvgT, colour = factor(Type))) +
+  scale_colour_discrete(name = "Engine Type") +
+  geom_boxplot(outlier.size=0, fill = "white", position="identity", alpha=.5)  +
+  stat_summary(fun.y=median, geom="line", aes(group=factor(Type)), size=1) + scale_y_log10() +
+  ggtitle ("⌊N/2⌋ CNOT Gates on N Qubits") +
+  xlab("N (No. of Qubits)") +
+  ylab("Average Time (ms)")
+
+##################################### Everything below here is scratch work ######################################
+
 # Fuction for overall model p-value
 lmp <- function (modelobject) {
   if (class(modelobject) != "lm") stop("Not an object of class 'lm' ")
@@ -7,23 +26,23 @@ lmp <- function (modelobject) {
   return(p)
 }
 
-# Initialize
-options(scipen=4, digits=3)
-eqTable <- data.frame(MinQubit=integer(), Base=numeric(), Intercept=numeric(), RSqr=numeric(), BaseP=numeric(), InterceptP=numeric(), ModelP=numeric())
-
 # Load data
-testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/grovers_p3.csv", header=TRUE, sep=",")
+testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/cnot_all.csv", header=TRUE, sep=",")
 names(testData) <- c("Count", "AvgT",	"SDT", "Q0", "Q1", "Q2", "Q3", "Q4", "Type")
-firstTrendPoint <- 1
+firstTrendPoint <- 16
 lastTrendPoint <- 22
-
+as.numeric(as.matrix(testData[2,firstTrendPoint:lastTrendPoint]))
+log(as.numeric(as.matrix(testData[2,firstTrendPoint:lastTrendPoint])))
 # Freely varied log base scaling:
-modelY <- log(testData[2,firstTrendPoint:lastTrendPoint])
-modelX <- testData[1,firstTrendPoint:lastTrendPoint]
+modelY <- log(as.numeric(as.matrix(testData[2,firstTrendPoint:lastTrendPoint])))
+modelX <- c(17:23)
 exponential.model <- lm(modelY~modelX)
 modelSummary<-summary(exponential.model)
 modelSummary
 coefs <- coef(exponential.model)
+newdata=data.frame(modelX=c(1:38))
+predictions=data.frame(exp(predict(exponential.model, newdata)))
+write.csv(predictions, file="/home/iamu/Github/qrack_benchmark_dump/qft_predictions.csv")
 
 # Add to equations table:
 eqRow <- data.frame(
@@ -62,7 +81,7 @@ ggplot(testData, aes(x=factor(Count), y=AvgT, colour = factor(Type))) +
   scale_colour_discrete(name = "Engine Type") +
   geom_boxplot(outlier.size=0, fill = "white", position="identity", alpha=.5)  +
   stat_summary(fun.y=median, geom="line", aes(group=factor(Type)), size=1) + scale_y_log10() +
-  ggtitle ("N-Qubit Grover's Search (N Qubits in Engine)") +
+  ggtitle ("QFT on N Qubits") +
   xlab("N (No. of Qubits)") +
   ylab("Average Time (ms)")
 
