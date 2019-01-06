@@ -3,7 +3,7 @@ options(scipen=4, digits=3)
 eqTable <- data.frame(MinQubit=integer(), Base=numeric(), Intercept=numeric(), RSqr=numeric(), BaseP=numeric(), InterceptP=numeric(), ModelP=numeric())
 
 # The input file name goes here
-testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/qft_all.csv", header=TRUE, sep=",")
+testData <- read.csv(file="/home/iamu/Github/qrack_benchmark_dump/grovers.csv", header=TRUE, sep=",")
 names(testData) <- c("Count", "AvgT",	"SDT", "Q0", "Q1", "Q2", "Q3", "Q4", "Type")
 
 require(ggplot2)
@@ -11,7 +11,7 @@ ggplot(testData, aes(x=factor(Count), y=AvgT, colour = factor(Type))) +
   scale_colour_discrete(name = "Engine Type") +
   geom_boxplot(outlier.size=0, fill = "white", position="identity", alpha=.5)  +
   stat_summary(fun.y=median, geom="line", aes(group=factor(Type)), size=1) + scale_y_log10() +
-  ggtitle ("QFT on N Qubits") +
+  ggtitle ("N-Qubit Grover's Search") +
   xlab("N (No. of Qubits)") +
   ylab("Average Time (ms)")
 
@@ -81,7 +81,7 @@ ggplot(testData, aes(x=factor(Count), y=AvgT, colour = factor(Type))) +
   scale_colour_discrete(name = "Engine Type") +
   geom_boxplot(outlier.size=0, fill = "white", position="identity", alpha=.5)  +
   stat_summary(fun.y=median, geom="line", aes(group=factor(Type)), size=1) + scale_y_log10() +
-  ggtitle ("QFT on N Qubits") +
+  ggtitle ("⌊N/2⌋ CNOT Gates on N Qubits") +
   xlab("N (No. of Qubits)") +
   ylab("Average Time (ms)")
 
