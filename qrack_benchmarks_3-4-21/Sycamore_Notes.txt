@@ -1,0 +1,3 @@
+"Sycamore" circuit simulations assume that adding ISWAP to a "Schroedinger method" API is a basically trivial task.
+Rather than adding ISWAP or a decomposition of it to the API or circuit, it is assummed SWAP may be substituted for a representative test.
+Qrack uses the ISWAP gate and performs the exact simulated circuit definition.
