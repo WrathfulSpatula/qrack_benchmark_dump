@@ -1,0 +1,5 @@
+Collected October 10, 2021
+Alienware 17
+BIOS version 1.8.0
+Intel(R) Core(TM) i9-10980HK CPU @ 2.40GHz
+NVIDIA GeForce RTX 2070 Super
