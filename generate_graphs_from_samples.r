@@ -42,7 +42,7 @@ avgtime$Simulator <- 'Qiskit Aer GPU'
 alldata <- rbind(alldata, avgtime)
 
 names(alldata) <- c("Qubits", "Time (s)", "Simulator")
-ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("N-qubit random circuit to depth=20, [SWAP,CZ,CX,CCX]/[H,X,Y,Z,T]") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.5.1, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 3080 Laptop GPU") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
+ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("N-qubit random circuit to depth=20, [SWAP,CZ,CX,CCX]/[H,X,Y,Z,T]") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.8.0, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 2070 Super") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
 
 rawdata <- read.csv(file="/home/iamu/GitHub/qrack_benchmark_dump/qrack_benchmarks_10-10-21/pyqrack_sycamore.csv")
 rawdata <- rawdata[ which(rawdata$depth == 20), ]
@@ -63,7 +63,7 @@ avgtime$Simulator <- 'Qiskit Aer GPU'
 alldata <- rbind(alldata, avgtime)
 
 names(alldata) <- c("Qubits", "Time (s)", "Simulator")
-ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("N-qubit rectangular 'Sycamore' to depth=20") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.8.0, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 2070 Super\n*QCGPU test substituted SWAP for ISWAP") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
+ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("N-qubit rectangular 'Sycamore' to depth=20") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.8.0, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 2070 Super") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
 
 rawdata <- read.csv(file="/home/iamu/GitHub/qrack_benchmark_dump/qrack_benchmarks_10-10-21/pyqrack_single_qubits.csv")
 rawdata <- rawdata[ which(rawdata$depth == 20), ]
@@ -84,7 +84,7 @@ avgtime$Simulator <- 'Qiskit Aer GPU'
 alldata <- rbind(alldata, avgtime)
 
 names(alldata) <- c("Qubits", "Time (s)", "Simulator")
-ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("Single qubits to depth=20 across width=n") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.5.1, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 3080 Laptop GPU") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
+ggplot(alldata, aes(`Qubits`, `Time (s)`, colour = `Simulator`)) + ggtitle("Single qubits to depth=20 across width=n") + xlab("Qubits") + ylab("Time (s)") + labs(caption="All series are GPU simulators on an Alienware 17, BIOS version 1.8.0, Ubuntu 20.04,\nIntel(R) Core(TM) i9-10980HK CPU @ 2.40GHz, NVIDIA GeForce RTX 2070 Super") + scale_x_continuous(breaks=c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28)) + scale_y_log10() + geom_line()
 
 rawdata <- read.csv(file="/home/iamu/GitHub/qrack_benchmark_dump/qrack_benchmarks_10-10-21/pyqrack_random_ccx.csv")
 rawdata <- rawdata[ which(rawdata$depth == 20), ]
